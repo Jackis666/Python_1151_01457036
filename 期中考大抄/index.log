@@ -1,0 +1,601 @@
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.1.15)  31 OCT 2026 22:10
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**d:/GITHUB/Python_1151_01457036/期中考大抄/index.tex
+(d:/GITHUB/Python_1151_01457036/期中考大抄/index.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-29>
+
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/extsizes\extarticle
+.cls
+Document Class: extarticle 1996/10/08 v1.0 Non Standard LaTeX document class
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo
+File: size12.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/base\exscale.sty
+Package: exscale 2025/06/05 v2.1i Standard LaTeX package exscale
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 57.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/cmex/m/n on input line 57.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/cmex/m/n on input line 57.
+\big@size=\dimen148
+)
+\c@part=\count271
+\c@section=\count272
+\c@subsection=\count273
+\c@subsubsection=\count274
+\c@paragraph=\count275
+\c@subparagraph=\count276
+\c@figure=\count277
+\c@table=\count278
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen149
+)
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.s
+ty
+Package: geometry 2026/03/07 v6.0 Page Geometry
+
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count279
+\Gm@cntv=\count280
+\c@Gm@tempcnt=\count281
+\Gm@bindingoffset=\dimen150
+\Gm@wd@mp=\dimen151
+\Gm@odd@mp=\dimen152
+\Gm@even@mp=\dimen153
+\Gm@layoutwidth=\dimen154
+\Gm@layoutheight=\dimen155
+\Gm@layouthoffset=\dimen156
+\Gm@layoutvoffset=\dimen157
+\Gm@dimlist=\toks18
+
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.c
+fg))
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec.s
+ty
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\x
+parse.sty
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2025-12-29 L3 programming layer (loader) 
+
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend
+-xetex.def
+File: l3backend-xetex.def 2025-10-09 L3 backend support: XeTeX
+\g__graphics_track_int=\count282
+\g__pdfannot_backend_int=\count283
+\g__pdfannot_backend_link_int=\count284
+))
+Package: xparse 2025-10-09 L3 Experimental document command parser
+)
+Package: fontspec 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTeX
+
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec-x
+etex.sty
+Package: fontspec-xetex 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count285
+\l__fontspec_language_int=\count286
+\l__fontspec_strnum_int=\count287
+\l__fontspec_tmp_int=\count288
+\l__fontspec_tmpa_int=\count289
+\l__fontspec_tmpb_int=\count290
+\l__fontspec_tmpc_int=\count291
+\l__fontspec_em_int=\count292
+\l__fontspec_emdef_int=\count293
+\l__fontspec_strong_int=\count294
+\l__fontspec_strongdef_int=\count295
+\l__fontspec_tmpa_dim=\dimen158
+\l__fontspec_tmpb_dim=\dimen159
+\l__fontspec_tmpc_dim=\dimen160
+
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+)
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec.c
+fg)))
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/xelatex/xecjk\xeCJK.sty
+Package: xeCJK 2022/08/05 v3.9.1 Typesetting CJK scripts with XeLaTeX
+
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/ctex\ctexhook.sty
+Package: ctexhook 2022/07/14 v2.5.10 Document and package hooks (CTEX)
+)
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xtemplat
+e\xtemplate.sty
+Package: xtemplate 2025-10-09 L3 Experimental prototype document functions
+)
+\l__xeCJK_tmp_int=\count296
+\l__xeCJK_tmp_box=\box53
+\l__xeCJK_tmp_dim=\dimen161
+\l__xeCJK_tmp_skip=\skip51
+\g__xeCJK_space_factor_int=\count297
+\l__xeCJK_begin_int=\count298
+\l__xeCJK_end_int=\count299
+\c__xeCJK_CJK_class_int=\XeTeXcharclass1
+\c__xeCJK_FullLeft_class_int=\XeTeXcharclass2
+\c__xeCJK_FullRight_class_int=\XeTeXcharclass3
+\c__xeCJK_HalfLeft_class_int=\XeTeXcharclass4
+\c__xeCJK_HalfRight_class_int=\XeTeXcharclass5
+\c__xeCJK_NormalSpace_class_int=\XeTeXcharclass6
+\c__xeCJK_CM_class_int=\XeTeXcharclass7
+\c__xeCJK_HangulJamo_class_int=\XeTeXcharclass8
+\l__xeCJK_last_skip=\skip52
+\c__xeCJK_none_node=\count300
+\g__xeCJK_node_int=\count301
+\c__xeCJK_CJK_node_dim=\dimen162
+\c__xeCJK_CJK-space_node_dim=\dimen163
+\c__xeCJK_default_node_dim=\dimen164
+\c__xeCJK_CJK-widow_node_dim=\dimen165
+\c__xeCJK_normalspace_node_dim=\dimen166
+\c__xeCJK_default-space_node_skip=\skip53
+\l__xeCJK_ccglue_skip=\skip54
+\l__xeCJK_ecglue_skip=\skip55
+\l__xeCJK_punct_kern_skip=\skip56
+\l__xeCJK_indent_box=\box54
+\l__xeCJK_last_penalty_int=\count302
+\l__xeCJK_last_bound_dim=\dimen167
+\l__xeCJK_last_kern_dim=\dimen168
+\l__xeCJK_widow_penalty_int=\count303
+
+LaTeX template Info: Declaring template type 'xeCJK/punctuation' taking 0
+(template)           argument(s) on line 2396.
+
+\l__xeCJK_fixed_punct_width_dim=\dimen169
+\l__xeCJK_mixed_punct_width_dim=\dimen170
+\l__xeCJK_middle_punct_width_dim=\dimen171
+\l__xeCJK_fixed_margin_width_dim=\dimen172
+\l__xeCJK_mixed_margin_width_dim=\dimen173
+\l__xeCJK_middle_margin_width_dim=\dimen174
+\l__xeCJK_bound_punct_width_dim=\dimen175
+\l__xeCJK_bound_margin_width_dim=\dimen176
+\l__xeCJK_margin_minimum_dim=\dimen177
+\l__xeCJK_kerning_total_width_dim=\dimen178
+\l__xeCJK_same_align_margin_dim=\dimen179
+\l__xeCJK_different_align_margin_dim=\dimen180
+\l__xeCJK_kerning_margin_width_dim=\dimen181
+\l__xeCJK_kerning_margin_minimum_dim=\dimen182
+\l__xeCJK_bound_dim=\dimen183
+\l__xeCJK_reverse_bound_dim=\dimen184
+\l__xeCJK_margin_dim=\dimen185
+\l__xeCJK_minimum_bound_dim=\dimen186
+\l__xeCJK_kerning_margin_dim=\dimen187
+\g__xeCJK_family_int=\count304
+\l__xeCJK_fam_int=\count305
+\g__xeCJK_fam_allocation_int=\count306
+\l__xeCJK_verb_case_int=\count307
+\l__xeCJK_verb_exspace_skip=\skip57
+
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/xelatex/xecjk\xeCJK.cfg
+File: xeCJK.cfg 2022/08/05 v3.9.1 Configuration file for xeCJK package
+)) (C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/tools\multicol.s
+ty
+Package: multicol 2025/10/21 v2.0b multicolumn formatting (FMi)
+\c@tracingmulticols=\count308
+\mult@box=\box55
+\multicol@leftmargin=\dimen188
+\c@unbalance=\count309
+\c@collectmore=\count310
+\doublecol@number=\count311
+\multicoltolerance=\count312
+\multicolpretolerance=\count313
+\full@width=\dimen189
+\page@free=\dimen190
+\premulticols=\dimen191
+\postmulticols=\dimen192
+\multicolsep=\skip58
+\multicolbaselineskip=\skip59
+\partial@page=\box56
+\last@line=\box57
+\mc@boxedresult=\box58
+\maxbalancingoverflow=\dimen193
+\mult@rightbox=\box59
+\mult@grightbox=\box60
+\mult@firstbox=\box61
+\mult@gfirstbox=\box62
+\@tempa=\box63
+\@tempa=\box64
+\@tempa=\box65
+\@tempa=\box66
+\@tempa=\box67
+\@tempa=\box68
+\@tempa=\box69
+\@tempa=\box70
+\@tempa=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
+\@tempa=\box80
+\@tempa=\box81
+\@tempa=\box82
+\@tempa=\box83
+\@tempa=\box84
+\@tempa=\box85
+\@tempa=\box86
+\@tempa=\box87
+\@tempa=\box88
+\@tempa=\box89
+\@tempa=\box90
+\@tempa=\box91
+\@tempa=\box92
+\@tempa=\box93
+\@tempa=\box94
+\@tempa=\box95
+\@tempa=\box96
+\@tempa=\box97
+\@tempa=\box98
+\c@minrows=\count314
+\c@columnbadness=\count315
+\c@finalcolumnbadness=\count316
+\last@try=\dimen194
+\multicolovershoot=\dimen195
+\multicolundershoot=\dimen196
+\mult@nat@firstbox=\box99
+\colbreak@box=\box100
+\mc@col@check@num=\count317
+\g__mc_curr_col_int=\count318
+) (C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.
+cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: xetex.def on input line 274.
+
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\xetex.
+def
+File: xetex.def 2025/11/01 v5.0p Graphics/color driver for xetex
+)
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.
+ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+)
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.s
+ty
+Package: enumitem 2025/02/06 v3.11 Customized lists
+\labelindent=\skip60
+\enit@outerparindent=\dimen197
+\enit@toks=\toks19
+\enit@inbox=\box101
+\enit@count@id=\count319
+\enitdp@description=\count320
+)
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.s
+ty
+\lst@mode=\count321
+\lst@gtempboxa=\box102
+\lst@token=\toks20
+\lst@length=\count322
+\lst@currlwidth=\dimen198
+\lst@column=\count323
+\lst@pos=\count324
+\lst@lostspace=\dimen199
+\lst@width=\dimen256
+\lst@newlines=\count325
+\lst@lineno=\count326
+\lst@maxwidth=\dimen257
+
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstpatch.s
+ty
+File: lstpatch.sty 2025/11/14 1.11b (Carsten Heinz)
+)
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.st
+y
+File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
+\c@lstnumber=\count327
+\lst@skipnumbers=\count328
+\lst@framebox=\box103
+)
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.c
+fg
+File: listings.cfg 2025/11/14 1.11b listings configuration
+))
+Package: listings 2025/11/14 1.11b (Carsten Heinz)
+
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/xelatex/xecjk\xeCJK-listi
+ngs.sty
+Package: xeCJK-listings 2022/08/05 v3.9.1 xeCJK patch file for listings
+\l__xeCJK_listings_max_char_int=\count329
+\l__xeCJK_listings_flag_int=\count330
+)
+==> First Aid for listings.sty no longer applied!
+    Expected:
+        2024/09/23 1.10c (Carsten Heinz)
+    but found:
+        2025/11/14 1.11b (Carsten Heinz)
+    so I'm assuming it got fixed.
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
+Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
+\col@sep=\dimen258
+\ar@mcellbox=\box104
+\extrarowheight=\dimen259
+\NC@list=\toks21
+\extratabsurround=\skip61
+\backup@length=\skip62
+\ar@cellbox=\box105
+)
+
+Package fontspec Info: 
+(fontspec)             Font family 'LatinModernSans(0)' created for font
+(fontspec)             'Latin Modern Sans' with options
+(fontspec)             [AutoFakeBold=2.5,Ligatures=TeX].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Latin Modern
+(fontspec)             Sans/OT:script=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"Latin Modern
+(fontspec)             Sans/OT:script=latn;language=dflt;embolden=2.5;mapping=t
+ex-text;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"Latin Modern
+(fontspec)             Sans/I/OT:script=latn;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"Latin
+(fontspec)             Modern
+(fontspec)             Sans/I/OT:script=latn;language=dflt;mapping=tex-text;"
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'LatinModernMono(0)' created for font
+(fontspec)             'Latin Modern Mono' with options
+(fontspec)             [AutoFakeBold=2.5,WordSpace={1,0,0},HyphenChar=None,Punc
+tuationSpace=WordSpace].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Latin Modern
+(fontspec)             Mono/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"Latin Modern
+(fontspec)             Mono/OT:script=latn;language=dflt;embolden=2.5;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"Latin Modern
+(fontspec)             Mono/I/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"Latin
+(fontspec)             Modern Mono/I/OT:script=latn;language=dflt;"
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Noto Sans TC/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Noto Sans TC/BI" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Noto Sans TC/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'NotoSansTC(0)' created for font 'Noto Sans
+(fontspec)             TC' with options
+(fontspec)             [AutoFakeBold=2.5,Script={CJK},AutoFakeBold={2.5}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Noto Sans
+(fontspec)             TC/OT:script=hani;language=dflt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"Noto Sans
+(fontspec)             TC/OT:script=hani;language=dflt;embolden=2.5;embolden=2.
+5;"
+
+
+(C:\Users\Jackis666\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.s
+ty
+File: lstlang1.sty 2025/11/14 1.11b listings language file
+) (index.aux)
+\openout1 = `index.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+*geometry* verbose mode - [ preamble ] result:
+* driver: xetex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: landscape 
+* h-part:(L,W,R)=(22.76219pt, 799.52246pt, 22.76219pt)
+* v-part:(T,H,B)=(22.76219pt, 551.98349pt, 22.76219pt)
+* \paperwidth=845.04684pt
+* \paperheight=597.50787pt
+* \textwidth=799.52246pt
+* \textheight=551.98349pt
+* \oddsidemargin=-49.5078pt
+* \evensidemargin=-49.5078pt
+* \topmargin=-86.5078pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=44.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+Package fontspec Info: 
+(fontspec)             Adjusting the maths setup (use [no-math] to avoid
+(fontspec)             this).
+
+\symlegacymaths=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 69.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 69.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 69.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 69.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 69.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 69.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 69.
+LaTeX Font Info:    Redeclaring math accent \check on input line 69.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 69.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 69.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 69.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 69.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 69.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 69.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/LatinModernSans(0)/m/n on input line
+ 69.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 69.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> TU/LatinModernSans(0)/m/n on input lin
+e 69.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  TU/LatinModernSans(0)/m/n --> TU/LatinModernSans(0)/m/n
+ on input line 69.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TU/LatinModernSans(0)/m/it on input li
+ne 69.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/LatinModernSans(0)/b/n on input lin
+e 69.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/LatinModernSans(0)/m/n on input lin
+e 69.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/LatinModernMono(0)/m/n on input lin
+e 69.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  TU/LatinModernSans(0)/m/n --> TU/LatinModernSans(0)/b/n
+ on input line 69.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> TU/LatinModernSans(0)/b/it on input l
+ine 69.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/LatinModernSans(0)/b/n on input li
+ne 69.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> TU/LatinModernMono(0)/b/n on input lin
+e 69.
+\c@lstlisting=\count331
+LaTeX Font Info:    External font `cmex7' loaded for size
+(Font)              <6> on input line 71.
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--92
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--92
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][]
+ []
+
+[1
+
+] [2]
+Underfull \hbox (badness 10000) in paragraph at lines 236--237
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 302--303
+[]\TU/LatinModernSans(0)/b/n/12 CPython []\TU/NotoSansTC(0)/b/n/12 沒 有 \TU/Lati
+nModernSans(0)/b/n/12 tail-call optimization[]; \TU/NotoSansTC(0)/b/n/12 深 度 上 
+限 約 \TU/LatinModernSans(0)/b/n/12 1000 ([][][]
+ []
+
+[4] [5] [6] [7]
+Underfull \hbox (badness 10000) in paragraph at lines 568--568
+[]|[][][][][][][][][][][][][][][][][][][][][][][]
+ []
+
+
+Underfull \hbox (badness 7397) in paragraph at lines 569--569
+[]|[][][][][][][][][][][][][][] [][][][][][][][][][][][][][] [][][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 570--570
+[]|[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 582--582
+[]|[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+ []
+
+[8] (index.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2022/08/05>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 8158 strings out of 402986
+ 201625 string characters out of 5447675
+ 1392335 words of memory out of 5000000
+ 36793 multiletter control sequences out of 15000+600000
+ 631937 words of font info for 85 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 73i,14n,93p,532b,1720s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on index.pdf (8 pages).

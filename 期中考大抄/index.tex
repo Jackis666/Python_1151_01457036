@@ -1,0 +1,586 @@
+% !TEX program = xelatex
+% Python 程式語言 期中考大抄 (A4 橫向, 12pt 全粗體版)
+% 編譯: xelatex python_cheatsheet_12pt_bold.tex
+\documentclass[12pt]{extarticle}
+\usepackage[a4paper,landscape,top=8mm,bottom=8mm,left=8mm,right=8mm]{geometry}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{multicol,xcolor,enumitem,listings,array}
+
+% 設定全域英文字型支援自動偽粗體
+\defaultfontfeatures{AutoFakeBold=2.5}
+\setmainfont{Latin Modern Sans}
+\setsansfont{Latin Modern Sans}
+\setmonofont{Latin Modern Mono}
+
+% 中文字型: 依序嘗試並啟用中文字型自動偽粗體 (AutoFakeBold)
+\newcommand{\setcjk}[1]{%
+  \setCJKmainfont[AutoFakeBold=2.5]{#1}%
+  \setCJKsansfont[AutoFakeBold=2.5]{#1}%
+  \setCJKmonofont[AutoFakeBold=2.5]{#1}%
+}
+\IfFontExistsTF{Noto Sans CJK TC}{\setcjk{Noto Sans CJK TC}}{%
+\IfFontExistsTF{Noto Sans TC}{\setcjk{Noto Sans TC}}{%
+\IfFontExistsTF{Microsoft JhengHei}{\setcjk{Microsoft JhengHei}}{%
+\IfFontExistsTF{PingFang TC}{\setcjk{PingFang TC}}{%
+\IfFontExistsTF{Noto Sans CJK SC}{\setcjk{Noto Sans CJK SC}}{%
+\setcjk{SimSun}}}}}}
+
+\definecolor{navy}{HTML}{1F3A5F}
+\definecolor{codebg}{HTML}{F1F3F6}
+\definecolor{kw}{HTML}{1D4ED8}
+\definecolor{com}{HTML}{4B5563}
+\definecolor{str}{HTML}{047857}
+\definecolor{warn}{HTML}{B91C1C}
+
+% 調整字級與全內文加粗 (\bfseries)
+\newcommand{\BASE}{\fontsize{12}{15}\selectfont\bfseries}
+\newcommand{\CODE}{\fontsize{10.5}{13}\selectfont\bfseries}
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\CODE,
+  keywordstyle=\color{kw}\bfseries,
+  commentstyle=\color{com}\bfseries,
+  stringstyle=\color{str}\bfseries,
+  columns=fixed, keepspaces=true, showstringspaces=false,
+  backgroundcolor=\color{codebg},
+  aboveskip=2pt, belowskip=2pt,
+  xleftmargin=0pt, xrightmargin=0pt,
+  breaklines=true, breakindent=0pt, frame=none,
+  lineskip=-0.2pt
+}
+\newcommand{\py}{\lstinline[language={},basicstyle=\ttfamily\fontsize{10.5}{13}\selectfont\bfseries,backgroundcolor=\color{white}]}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1pt}
+\setlength{\columnsep}{10pt}
+\setlength{\columnseprule}{0.4pt}
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.0}
+
+\renewcommand{\sec}[1]{\par\vspace{3pt}\noindent{\setlength{\fboxsep}{2pt}\colorbox{navy}{\parbox{\dimexpr\linewidth-4pt}{\color{white}\bfseries\fontsize{13}{16}\selectfont #1}}}\par\vspace{2pt}}
+\newcommand{\sub}[1]{\textcolor{navy}{\textbf{#1}}}
+\newcommand{\warn}[1]{\textcolor{warn}{\textbf{#1}}}
+\newcommand{\ra}{$\rightarrow$}
+\newenvironment{bl}{\begin{itemize}[leftmargin=10pt,itemsep=1pt,parsep=0pt,topsep=1pt,partopsep=0pt,labelsep=3pt,label={\textbullet}]}{\end{itemize}}
+
+\pagestyle{empty}
+\begin{document}
+\BASE
+\noindent{\setlength{\fboxsep}{3pt}\colorbox{navy}{\parbox{\dimexpr\textwidth-6pt}{\color{white}\bfseries\fontsize{14}{17}\selectfont Python 程式語言 期中考大抄 \hfill Lec2--7 \,+\, Lab3/5 \,+\, HW3/5 \,+\, 2025 期中考古題}}}
+\vspace{2pt}
+
+\begin{multicols*}{2}
+
+
+%==================================================
+\sec{0. 環境與 Python 特性 (Lec1/2)}
+\begin{bl}
+\item 虛擬環境 venv: 隔離各專案的套件相依, 避免版本衝突, 不影響系統 Python (\py|python -m venv .venv|, activate 後再 \py|pip install|)。
+\item 直譯式 (REPL, 免編譯)、動態型別 (同一變數可換型別)、\warn{大小寫敏感} (\py|Print()| NameError, \py|If| SyntaxError)、Batteries included (標準庫完整)。
+\item Zen: Explicit\,$>$\,implicit, Simple\,$>$\,complex, Flat\,$>$\,nested, Sparse\,$>$\,dense, Readability counts, 一種明顯做法。
+\end{bl}
+
+\sec{1. 縮排 / PEP 8 / 命名}
+\begin{bl}
+\item 縮排定義區塊, \sub{4 空白}, 同層一致, \warn{不可混用 tab 與 space} (IndentationError)。
+\item 常見錯誤: \py|if x:| 後未縮排 \ra{} \py|expected an indented block|; 多縮排 \ra{} \py|unexpected indent|; 同區塊縮排不一致; \warn{缺冒號} \ra{} SyntaxError; \py|def| 內忘了縮排; 巢狀區塊每層 +4。
+\item PEP 8 = 官方風格指南 (Guido 等, 2001): 一致性/可讀性/協作/業界標準/工具支援。程式每行 $\le$79 字元, 註解與 docstring $\le$72; 運算子兩側空白 \py|a = b + c|; keyword arg 的 \py|=| 兩側\warn{不}加空白 \py|f(x, k=3)|; 切片 \py|a[:3]|; import 分組 (標準庫 / 第三方 / 本地) 以空行隔開; 註解 \py|#|, \py|"""doc"""|, \py|# TODO|, \py|# FIXME|。
+\item 命名: 變數/函式 \py|snake_case|; 類別 \py|PascalCase|; 常數 \py|UPPER_CASE|; \py|_x| 內部使用慣例; \py|userName|(camelCase)、\py|Calculate_Total| 皆不符。
+\item 變數規則: 字母或 \py|_| 開頭、可含字母/數字/底線、區分大小寫、\warn{不可為關鍵字} (共 35 個: \py|class def lambda None True False and or not in is if elif else for while break continue pass return try except finally raise with as import from global nonlocal del assert yield async await|)。\py|2name| \py|user-name| \py|class| 皆非法。
+\item 工具: pylint (完整分析), flake8 (風格檢查), black (自動排版), autopep8 (自動修正); PEP 8 是準則非鐵律 (可讀性/相容舊碼可例外, 學習時嚴格遵守)。
+\end{bl}
+
+\sec{2. 型別與運算子}
+\begin{bl}
+\item 基本型別: \py|int float complex(3+4j) str bool|; \py|type(x)|; \py|type(x)==int|; \py|isinstance(x,(int,float))| (可多型別 tuple)。
+\item 算術: \py|/| 真除法(恆為 float) \py|//| 取整(floor) \py|%| 餘數 \py|**| 次方; \py|-7//2=-4|, \py|-7%2=1|; 比較 \py|== != < > <= >=| 可串接 \py|0<=x<=100|; 字串依字典序 \py|"apple"<"banana"|。
+\item 邏輯 \py|and or not|; \sub{短路}: \py|(x!=0) and (10/x>1)| 不會除零; \py|or| 左邊為真就不求右邊。
+\item 位元: \py/& | ^ ~ << >>/; \py|10=1010,4=0100|: \py|&|=0, \py,|,=14, \py|^|=14, \py|~10=-11|, \py|10<<1=20|, \py|10>>1=5|。
+\item 轉換: 隱式 int+float $\to$ float; 顯式 \py|int("123") float("1.5") bool(0) str(5)|; \py|int("3.14")| ValueError; \py|int(3.9)=3| (往 0 截斷)。\sub{Falsy}: \py|0 0.0 "" [] () {} set() None|; \py|bool("False")=True|。
+\item 四捨五入 (銀行家): \py|f"{2.5:.0f}"|=2, \py|f"{3.5:.0f}"|=4。
+\end{bl}
+
+\sec{3. 流程控制與輸入模板}
+\begin{bl}
+\item \py|if / elif / else|: 由上而下, \sub{第一個成立就停}。三元: \py|x = a if cond else b|。
+\item 風格: 巢狀 (C-style) $\to$ \sub{guard clause} 先擋非法再線性判斷 \py|if not 0<=s<=100: return "Invalid"| \ra{} 邊界資料化 \py|[(90,"A"),(80,"B")]| 迴圈掃描 (皆 O(n), 要量測 \py|time.perf_counter()|, 可讀性優先)。
+\item \py|for x in iterable| (list/str/dict.items/range); \py|range(stop)|, \py|range(a,b)|, \py|range(a,b,step)| (\warn{stop 不含}); 倒數 \py|range(10,0,-1)|。\py|while cond:| 記得更新條件。
+\item \py|break| 跳出整個迴圈; \py|continue| 跳下一圈; \py|pass| 佔位 (空函式/類別/分支)。巢狀迴圈: 九九乘法、三角形 \py|print("*"*(i+1))|。優化: 不變運算移出迴圈。
+\end{bl}
+\begin{lstlisting}
+n = int(input())                    # input() 回傳 str
+line = input()                      # 整行(保留空白, 勿 strip)
+a = list(map(int, input().split())) # 一行多個數
+while True:                         # 哨兵: END / 0 結束
+    s = input()
+    if s == "END": break
+nums = []
+while True:                         # 讀到 EOF 為止
+    try: x = int(input())
+    except EOFError: break
+    nums.append(x)
+a, b = b, a                         # 交換
+arr[j], arr[j+1] = arr[j+1], arr[j]
+\end{lstlisting}
+
+%==================================================
+\sec{4. 四大集合總覽 (Lec3)}
+\begin{tabular}{@{}l|l|l|l|l@{}}
+ & list \py|[]| & tuple \py|()| & set \py|{}| & dict \py|{k:v}|\\\hline
+有序 & Y & Y & N & Y (3.7+)\\
+可變 & Y & N & Y & Y\\
+可重複 & Y & Y & N & key 唯一\\
+索引 & 位置 & 位置 & 無 & 用 key\\
+\py|x in| & O(n) & O(n) & O(1) & O(1) (key)\\
+取值 & O(1) & O(1) & -- & O(1)\\
+新增 & 尾 O(1)/中 O(n) & -- & O(1) & O(1)\\
+刪除 & O(n) & -- & O(1) & O(1)\\
+\end{tabular}\\
+(set/dict 的 O(1) 為平均, 最差 O(n))
+\begin{bl}
+\item \warn{\texttt{\{\}} 是空 dict}, 空 set 用 \py|set()|; 單元素 tuple 要逗號 \py|(42,)|, \py|(42)| 只是 int; \py|x, y = 10, 20| 不加括號也是 tuple。
+\item 轉換: \py|tuple(L) set(L) list(s) dict([("a",1)]) dict(zip(k,v)) list("abc")|; \py|set(L)| 去重但\warn{順序不保證}。
+\item 選用: list=會變動的序列; tuple=固定記錄/座標/可當 dict key; set=唯一 + 快速查找; dict=key $\to$ value。
+\end{bl}
+
+\sec{5. 記憶體模型 / 複製 / 傳參數}
+\begin{bl}
+\item 變數 = 貼在物件上的\sub{標籤}, 不是盒子。\py|b = a| 兩標籤同一物件 (\py|a is b| True): \py|b.append(4)| 則 \py|a| 也變。
+\item 不可變: int float str tuple frozenset bool; 可變: list set dict。\py|s += "x"| 建新物件 (id 變); \py|L.append()| 同一物件 (id 不變)。
+\item 複製: \py|a.copy()|, \py|list(a)|, \py|a[:]| 為\sub{淺拷貝} (巢狀內層仍共用); \py|copy.deepcopy(a)| 完全獨立。
+\item 傳參 = \sub{call by object reference}: 函式內\sub{就地修改}(\py|lst.append|) 呼叫端看得到; \sub{重新綁定}(\py|n=0|, \py|s=s+"x"|) 呼叫端不變。
+\item \warn{預設參數只在 def 時求值一次}: \py|def add(x, acc=[])| \ra{} \py|add(1)=[1]|, \py|add(2)=[1,2]|; 修: \py|acc=None| 再 \py|if acc is None: acc=[]|。
+\item \warn{共用陷阱}: \py|[[0]*3]*3| 三列同一個 list \ra{} \py|[[0]*3 for _ in range(3)]|; \py|dict.fromkeys(keys, [])| 共用同一 list \ra{} \py|{k: [] for k in keys}|。
+\item \sub{hashable}: 只有不可變物件可當 dict key / set 元素; \py|{[1,2]:1}| TypeError, \py|{(1,2):1}| OK。list=動態陣列; set/dict=雜湊表 (相等的 key 必須雜湊相同, 故 key 不能變)。
+\item 字串組合用 \py|"".join(parts)|, 迴圈內 \py|+=| 是 O(n$^2$)。
+\end{bl}
+
+\sec{6. List}
+\begin{lstlisting}
+a = [0,1,2,3,4,5,6,7,8,9]
+a[1:4]; a[:5]; a[5:]; a[::2]; a[::-1]; a[-3:]
+a[1:4] = [10,20,30]   # 取代(長度可不同)
+a[2:2] = [100]        # 插入
+del a[1:3]            # 刪切片
+[0]*5;  list(range(1,6));  [x**2 for x in range(5)]
+\end{lstlisting}
+\begin{bl}
+\item 索引從 0, 負索引 -1 為最後; 單一索引越界 \warn{IndexError}, 切片不會報錯。
+\item \py|append(x)| 尾端; \py|insert(i,x)|; \py|extend(it)| 多個; \py|+| 產生新 list; \py|remove(v)| 刪第一個 (沒有 ValueError); \py|pop()| / \py|pop(i)| 刪並回傳; \py|clear()|; \py|del a[i]|; \py|index(v)| (沒有 ValueError); \py|count(v)|; \py|in|。
+\item \py|a.sort()| 就地排序\warn{回傳 None}; \py|sorted(a)| 回傳新 list; \py|reverse=True|; \py|key=lambda x: x[1]|; \py|a.reverse()|; \py|len min max sum|。
+\item 推導式: \py|[expr for x in it if cond]|; 有 else 的三元要放\sub{前面} \py|["e" if x%2==0 else "o" for x in r]|; 巢狀 \py|[(i,j) for i in r1 for j in r2]|; 攤平 \py|[n for row in m for n in row]|。比 for+append 簡潔且通常較快, 但\warn{不能完全取代 for} (需 break、複雜邏輯、副作用時)。
+\end{bl}
+
+\sec{7. Tuple / namedtuple}
+\begin{bl}
+\item 有序、可重複、\warn{不可變} (\py|t[0]=1| TypeError)、hashable (可當 key); 方法只有 \py|count| \py|index|; 支援索引/切片/\py|len|/\py|in|。「修改」= 轉 list 再轉回, 或 \py|(10,)+t[1:]|。
+\item 解包: \py|x, y = pt|; 交換 \py|a, b = b, a|; \py|first, *mid, last = nums| (\py|mid| 是 list); \py|_, _, third, *_ = nums|; 函式 \py|return a, b| 實為回傳 tuple, 可 \py|mn, mx, avg = stats(L)|。
+\item \py|P = namedtuple("P", ["name","age"])| 或 \py|"x y"|; \py|p.name| 或 \py|p[0]|; 可解包、不可變、可當 key; \py|p._asdict()| \py|p._replace(age=26)| \py|P._fields|。
+\end{bl}
+
+\sec{8. Set}
+\begin{bl}
+\item \py|add(x)|; \py|update(it)| (\py|update("ab")| 加入每個\sub{字元}); \py|remove(x)| 不存在 \warn{KeyError}; \py|discard(x)| 不報錯; \py|pop()| 任意一個; \py|clear()|; \py|in| O(1)。
+\item 運算 (皆有方法版): 聯集 \py/A|B/ \py|union|; 交集 \py|A&B| \py|intersection|; 差集 \py|A-B| \py|difference|; 對稱差 \py|A^B|; 子集 \py|<=| \py|issubset|; 真子集 \py|<|; 超集 \py|>=| \py|issuperset|; \py|isdisjoint|。\py|&| 優先於 \py/|/, 不確定就加括號。
+\item 推導式 \py|{x**2 for x in r}|; 去重保序: \py|list(dict.fromkeys(L))| 或 seen 集合; \py|frozenset(...)| 不可變、可當 key (\py|add| \ra{} AttributeError)。大量成員查詢用 set 不用 list。
+\end{bl}
+
+\sec{Lab3 / HW3 模板}
+\begin{lstlisting}
+# 3-1 共同好友 (set 交集)
+n,m = map(int,input().split())
+A = set(map(int,input().split())); B = set(map(int,input().split()))
+c = sorted(A & B); print(len(c)); print(*c)
+# 3-2 火車調度: C 站當 stack (UVa514: 單獨 0 結束該組, N=0 結束全部)
+def ok(n, tg):
+    st=[]; nx=1
+    for t in tg:
+        while (not st or st[-1]!=t) and nx<=n:
+            st.append(nx); nx+=1
+        if not st or st[-1]!=t: return False
+        st.pop()
+    return True
+# HW3-1 最高頻字元
+from collections import Counter
+print(Counter(s).most_common(1)[0][0])
+# HW3-2 干擾對 (tuple + set): 距離平方<=D 且 power 不同
+if d2 <= D and a[3] != b[3]:
+    pairs.add((min(a,b), max(a,b)))     # 小的在前去重
+for p,q in sorted(pairs): print(f"{p} <-> {q}")
+\end{lstlisting}
+
+%==================================================
+\sec{9. Dict (Lec4)}
+\begin{bl}
+\item 建立: \py|{"a":1}| \py|dict(a=1)| \py|dict(zip(k,v))| \py|{x:x**2 for x in r}| \py|dict.fromkeys(keys, 0)|。key 唯一且 hashable; 保持插入順序 (3.7+)。
+\item \py|d[k]| 缺 key \warn{KeyError}; \py|d.get(k, default)| 不報錯; \py|d[k]=v| 新增/更新; \py|d.update({...})|; \py|del d[k]|; \py|d.pop(k[,default])|; \py|popitem()| 移除最後一組; \py|keys() values() items()|。\py|k in d| O(1) (查 key); \py|v in d.values()| O(n)。
+\item \py|{1:"a", 1.0:"b", True:"c"}| \ra{} \py|{1: 'c'}|, len=1 (1==1.0==True 雜湊相同 \ra{} 同一 key: 保留\sub{第一個 key 物件}, \sub{最後的 value})。
+\item 迴圈中增刪 key \ra{} \warn{RuntimeError}; 修: \py|for k in list(d):|。\py|for k,v in d.items():| 取 key 與 value。
+\item 合併 (後者覆蓋前者): \py|{**a, **b}|; \py/a | b/ (3.9+); \py|a.update(b)|。反轉 \py|{v:k for k,v in d.items()}| (重複的 value 會被覆蓋)。
+\item \sub{Counter}: \py|Counter(words)|, \py|.most_common(k)|, 缺 key 為 0; 手寫 \py|d[w]=d.get(w,0)+1|。\sub{分組}: \py|d.setdefault(k,[]).append(v)|; \py|defaultdict(list)|; \py|defaultdict(int)| (缺 key 自動建預設值)。
+\item \sub{查表}取代長 if/elif: \py|m.get(x, default)|。\sub{dispatch table}: \py|ops={"+":operator.add,...}|; \py|f=ops.get(op)|; \py|f(a,b)| (類似 C 的 function pointer 表)。
+\item 巢狀 dict (JSON 形): \py|db["001"]["courses"][0]|; 層級可能缺用 \py|db.get("x",{}).get("name","N/A")|。\py|copy()| 淺拷貝, 巢狀要 \py|deepcopy|。
+\item 用 id 建索引: \py|by_id={s["id"]:s for s in L}| 之後每次查詢 O(1) (list 逐筆找是 O(n))。
+\end{bl}
+
+\sec{10. String}
+\begin{bl}
+\item 不可變 Unicode 序列: \py|s[0]="H"| TypeError, 只能 \py|"H"+s[1:]|; 沒有 char 型別 (\py|type(s[0])| 是 str); \py|len| O(1) 算\sub{字元數} (C 的 strlen 算 bytes)。
+\item UTF-8: ASCII 1 byte, 常用中文 3 bytes; \py|len("台灣")=2|, \py|len("台灣".encode("utf-8"))=6|; \py|.encode()| / \py|.decode()|; \py|ord("台")=0x53f0|, \py|chr()|。
+\item 切片 \py|s[a:b:c]|, \py|s[::-1]| 反轉, \py|s[-1]|; 單一索引越界 IndexError。取副檔名 \py|fn[fn.rfind(".")+1:]|。
+\item 大小寫 \py|upper lower capitalize title swapcase casefold|。搜尋 \py|find| (沒有 \ra{} -1) 對 \py|index| (ValueError); \py|rfind count startswith endswith in|。
+\item \py|strip/lstrip/rstrip(chars)| 的參數是\warn{字元集合}, 不是前綴: \py|"https://shop.example.com/".strip("https://")| \ra{} \py|'op.example.com'|; 去前後綴用 \py|removeprefix| / \py|removesuffix| (3.9+)。\py|replace(old,new[,count])|。
+\item \py|split()| 吃連續空白; \py|'a  b c'.split(" ")| \ra{} \py|['a','','b','c']|; \py|split(sep,1)| 切一次; \py|splitlines()|; \py|"-".join(it)| 元素必須是 str (\py|",".join(map(str,nums))|); \py|partition("@")| 恆回 3 段 \py|(前, sep, 後)|。
+\item \py|isalpha isdigit isdecimal isnumeric isalnum isupper islower isspace| 都\warn{不認 "-5" "3.14"}, 且 \py|"²"| \py|"四"| 與 \py|int()| 不一致; 驗證數字用 \py|try: int(s) / except ValueError|。\py|any(c.isupper() for c in pw)|。
+\item 對齊 \py|center ljust rjust zfill| (\py|"7".zfill(3)="007"|)。
+\end{bl}
+
+\sec{11. 格式化 (f-string)}
+\begin{bl}
+\item 三種: \py|"%s %.1f" % (a,b)| (C printf 風格), \py|"{} {:.1f}".format(a,b)|, \py|f"{a} {b:.1f}"| (3.6+, 最快最簡潔, 可放運算式)。格式: \py|{值:填充 對齊 寬度 ,分組 .精度 型別}|, 依序且皆可省略。對齊 \py|<| 左 \py|>| 右 \py|^| 中 (str 預設左, 數字預設右)。
+\end{bl}
+\begin{lstlisting}
+f"{1234.5:*>12,.2f}"   # ****1,234.50
+f"{42:05d}"            # 00042
+f"{0.856:.1%}"         # 85.6%
+f"{1234567.891:,.2f}"  # 1,234,567.89
+f"{1234567.891:.3e}"   # 1.235e+06
+f"{255:b} {255:o} {255:x} {255:#x}"  # 11111111 377 ff 0xff
+f"{7:+d}"              # +7
+f"{x=}"  f"{x*2 = }"   # x=42  x*2 = 84  (3.8+)
+f"{name!r}"            # 'Ann'   (!r = repr)
+f"[{x:>{w}}]"          # 巢狀寬度
+f"{d:%Y/%m/%d}"        # datetime 格式
+f"{'pass' if x>=60 else 'fail'}"
+print(*nums, sep=", "); print(x, end="")
+f"{'Item':<8}{'Price':>8}"   # 對齊表格
+"#"*filled + "-"*(w-filled)  # 文字進度條
+\end{lstlisting}
+
+%==================================================
+\sec{12. 函式 (Lec5)}
+\begin{bl}
+\item \py|def f(a, b=1, *args, **kwargs):| 順序: 一般 $\to$ 預設 $\to$ \py|*args| (收成 \sub{tuple}) $\to$ \py|**kwargs| (收成 \sub{dict})。呼叫: positional 依\sub{順序}, keyword 不論順序, 但 positional 必須在 keyword 前 (\py|f(name="D", 35)| SyntaxError)。
+\item 呼叫端解包 (方向相反): \py|f(*lst)| \py|f(**dct)| \py|print(*nums, sep=",")|。
+\item 無 \py|return| \ra{} 回傳 \py|None|; \py|return a, b| 回傳 tuple; early return / guard clause; docstring + \py|help(f)|。預設參數陷阱見 \S 5。
+\item \sub{LEGB}: Local $\to$ Enclosing $\to$ Global $\to$ Built-in。函式內\sub{賦值}就是建立 local; 先讀後寫 global 變數 \ra{} \warn{UnboundLocalError}, 要 \py|global x|; 修改外層函式變數用 \py|nonlocal x|。
+\end{bl}
+
+\sec{13. 模組與套件}
+\begin{bl}
+\item 模組 = 一個 \py|.py|: \py|import m| / \py|from m import f,g| / \py|import m as alias| / \py|from m import *| (不建議: 污染命名空間)。import 時會執行模組頂層程式。
+\item \py|if __name__ == "__main__":| 直接執行時 \py|__name__=="__main__"|, 被 import 時為模組名 \ra{} 放測試/主程式, import 時不會跑。
+\item 套件 = 含 \py|__init__.py| 的資料夾; \py|__init__.py| 可 re-export (\py|from .math_tools.basic import add|, \py|.| 為相對 import), \py|__all__| 控制 \py|import *|, 可放 \py|__version__|。\py|from pkg.sub import mod as m|。
+\item 標準庫: \py|math| (\py|pi sqrt ceil floor factorial gcd|), \py|random| (\py|randint(a,b)| 含兩端, \py|choice shuffle random|), \py|datetime| (\py|now() date.today() timedelta(days=1)|), \py|os| (\py|getcwd path|), \py|sys collections itertools functools|。第三方 \py|pip install|。
+\end{bl}
+
+\sec{14. 一等函式 / 閉包 / 高階函式}
+\begin{bl}
+\item 函式是物件: \py|g = f| (不加括號=複製參照; \py|g = f()| 是呼叫後存回傳值), 可放進 list/dict、當引數、當回傳值 (\py|ops["add"](5,3)|)。
+\item \sub{Closure 閉包}: 內層函式捕獲外層變數, 外層返回後狀態仍存活 (\py|make_counter| + \py|nonlocal|); 是 decorator 的基礎。
+\item \warn{Late binding}: \py|[lambda: i for i in range(3)]| 呼叫結果皆 \py|[2,2,2]| (捕獲\sub{變數}不是值); 修 \py|lambda i=i: i| \ra{} \py|[0,1,2]|。
+\item 高階函式 = 吃函式或回傳函式; 工廠 \py|create_multiplier(3)| 回傳 closure。型別註記 \py|def f(x: int) -> int|, \py|Callable[[int], int]| 僅文件用途, \warn{執行時不檢查}。
+\item \sub{lambda}: 匿名、僅能\sub{單一運算式} (不能有陳述式/多分支), \py|sorted(L, key=lambda s: s["age"])|。適用: 作為 map/filter/sort 的簡單引數。
+\end{bl}
+\begin{lstlisting}
+list(map(int, ["1","2"]))                 # map -> iterator, 要 list()
+list(map(lambda x,y: x+y, [1,2], [3,4]))  # [4,6]
+list(filter(lambda x: x%2==0, L))
+list(filter(None, [1,None,"",0,2]))       # [1,2] 去 falsy
+from functools import reduce
+reduce(lambda a,b: a+b, L)                # fold; reduce(f, L, init)
+\end{lstlisting}
+\begin{bl}
+\item 推導式通常比 map/filter 清楚; reduce 加總不如 \py|sum|; map 適合搭配\sub{既有具名函式} (\py|map(int,...)|)。
+\end{bl}
+
+\sec{15. 遞迴 / Memoization}
+\begin{bl}
+\item 遞迴 = base case + 縮小問題: \py|n * factorial(n-1)|; naive \py|fib(n-1)+fib(n-2)| 重複計算 $O(2^n)$。
+\item CPython \warn{沒有 tail-call optimization}; 深度上限約 1000 (\py|sys.getrecursionlimit()|), 超過 \warn{RecursionError} \ra{} 深度大用迴圈。
+\item Memo: dict cache 存一次 \ra{} $O(n)$; \py|@lru_cache(maxsize=None)| (引數須 hashable; \py|fib.cache_info()|; LRU = Least Recently Used); \py|partial(int, base=2)("1010")=10|。
+\end{bl}
+
+\sec{16. 純函式 / 不可變 / 組合}
+\begin{bl}
+\item \sub{Pure}: 同輸入必同輸出、無副作用 (不改 global、不 print、不讀時間/random); 易測試、可快取。\sub{Immutability}: \py|lst+[x]| 回傳新 list; \py|lst.append(x)| 改原本; str/tuple 要重建。
+\item \sub{compose}: \py|compose(f,g,h)(x) == f(g(h(x)))|; 實作 \py|for fn in reversed(funcs): x = fn(x)|。
+\end{bl}
+
+\sec{17. Decorator}
+\begin{bl}
+\item \py|@deco| $\equiv$ \py|f = deco(f)|; 本質是 HOF (吃函式、回傳函式)。\py|@functools.wraps(func)| 保留原函式 \py|__name__| / \py|__doc__|。
+\item 帶參數要\sub{三層} (args $\to$ func $\to$ call): \py|@repeat(3)| = \py|repeat(3)(f)|。
+\item \sub{可疊多個}, 由\sub{下往上}套用 (離 def 最近先): \py|@bold @italic def t()| $\equiv$ \py|bold(italic(t))| \ra{} \py|<b><i>hi</i></b>|。
+\end{bl}
+\begin{lstlisting}
+import functools, time
+def timing(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        t = time.perf_counter()
+        r = func(*args, **kwargs)      # 呼叫原函式
+        print(f"{func.__name__} {time.perf_counter()-t:.4f}s")
+        return r                       # 別忘 return
+    return wrapper
+def repeat(n):                         # decorator factory
+    def deco(fn):
+        @functools.wraps(fn)
+        def wrap(*a, **k):
+            for _ in range(n): r = fn(*a, **k)
+            return r
+        return wrap
+    return deco
+# HW5-1 memoize (遞迴呼叫也會走 wrapper, 因名稱已被重綁)
+def memoize_decorator(func):
+    cache = {}
+    @functools.wraps(func)
+    def wrapper(n):
+        if n in cache:
+            print(f"Cache hit for fibonacci({n})"); return cache[n]
+        r = func(n); cache[n] = r
+        print(f"Computed fibonacci({n}) = {r}")
+        return r
+    return wrapper
+@memoize_decorator
+def fibonacci(n): ...   # 題目給定的遞迴版
+print("Final Result:", fibonacci(int(input())))
+# N=3: Computed 1, Computed 0, Computed 2, Cache hit 1, Computed 3
+\end{lstlisting}
+
+\sec{18. Iterator / Generator}
+\begin{bl}
+\item \sub{Iterable} 有 \py|__iter__|; \sub{Iterator} 有 \py|__iter__| + \py|__next__|; \py|it=iter(L)|, \py|next(it)|; 耗盡丟 \warn{StopIteration}。\py|for| = \py|iter()| + 反覆 \py|next()| 直到 StopIteration。Iterator \warn{只能走一次}。
+\item \sub{Generator}: 含 \py|yield| 的函式; 呼叫時\sub{不執行}, 回傳 generator (也是 iterator); 每次 \py|next| 跑到下個 \py|yield| 暫停; 惰性、省記憶體。生成式 \py|(x*x for x in r)| (小括號) 約 200 bytes, list 則 MB 級; \py|sum(gen)| 串流處理。
+\item \warn{耗盡}: \py|g=(x for x in range(3)); list(g); list(g)| \ra{} \py|[0,1,2]| 然後 \py|[]|。
+\item \py|yield from sub| 委派; pipeline \py|squared(evens(read(r)))| 每階段皆惰性。無窮: \py|while True: yield n|, 取用 \py|islice(g,5)|, \py|takewhile|, \py|itertools.count cycle chain|。
+\end{bl}
+\begin{lstlisting}
+class Counter:                         # 自訂 iterator
+    def __init__(s,a,b): s.cur=a; s.end=b
+    def __iter__(s): return s
+    def __next__(s):
+        if s.cur >= s.end: raise StopIteration
+        s.cur += 1; return s.cur-1
+def fib_gen():                         # 無窮 generator
+    a, b = 0, 1
+    while True: yield a; a, b = b, a+b
+\end{lstlisting}
+
+\sec{Lab5 / HW5 模板}
+\begin{lstlisting}
+# 5-1 偶數和 (*args); 以 END 結束
+def even_sum(*args): return sum(x for x in args if x%2==0)
+while True:
+    line = input()
+    if line == "END": break
+    print(even_sum(*map(int, line.split())))   # 解包呼叫
+# 5-2 3 空罐換 1 瓶, 可借罐子 -> 答案 = N + N//2 (8->12, 9->13)
+def cola(n):
+    total = e = n
+    while e >= 3: k=e//3; total+=k; e=e%3+k
+    return total + (1 if e == 2 else 0)        # 剩2罐:借1罐換1瓶
+# HW5-2 G = sum_{i<j<=N} gcd(i,j); 以 0 結束 (先預處理 N<=500)
+from math import gcd
+S=[0]*501
+for n in range(2,501):
+    S[n] = S[n-1] + sum(gcd(i,n) for i in range(1,n))
+# S[10]=67  S[100]=13015  S[500]=442011
+\end{lstlisting}
+
+%==================================================
+\sec{19. 檔案 I/O (Lec6)}
+\begin{bl}
+\item 模式: \py|r| 讀 (不存在 FileNotFoundError); \py|w| 寫 (建立, \warn{已存在會清空}); \py|a| 附加; \py|x| 獨佔建立 (已存在 FileExistsError); \py|b| 二進位; \py|t| 文字(預設); \py|+| 讀寫 (\py|r+|)。
+\item \py|with open(p, "r", encoding="utf-8") as f:| 離開區塊\sub{自動 close, 即使發生例外} ($\equiv$ try/finally); 離開後 \py|f.closed| 為 True; 可 \py|with open(a) as i, open(b,"w") as o:|。不用 with 時必須自己 \py|close()|。
+\item 讀: \py|read()| 全部; \py|read(n)| n 字元; \py|readline()| 一行; \py|readlines()| list (含 \py|\n|); \py|for line in f:| 逐行省記憶體 (\py|line.strip()| 去換行)。
+\item 寫: \py|write(s)| \warn{不會自動換行}; \py|writelines(list)| 也不加換行。
+\item \py|os|: \py|getcwd() chdir() path.exists() isfile() isdir() getsize() join() split() splitext()|, \py|os.path.join| 跨平台。\py|pathlib|: \py|p=Path("d")/"in.txt"|; \py|exists() is_file() name stem suffix parent read_text() write_text(s) iterdir()|。
+\item 自訂 context manager: \py|__enter__| (回傳值給 \py|as|) 與 \py|__exit__(self,*exc)| (\sub{一定執行})。
+\end{bl}
+\begin{lstlisting}
+import csv, json
+with open("a.csv", newline="", encoding="utf-8") as f:   # CSV 要 newline=""
+    r = csv.reader(f); header = next(r)       # 每列 list[str]
+    for row in r: ...
+    for row in csv.DictReader(f): row["name"] # 值皆為 str
+w = csv.writer(f); w.writerow([...]); w.writerows(rows)
+w = csv.DictWriter(f, fieldnames=[...]); w.writeheader(); w.writerows(ds)
+csv.reader(f, delimiter="\t")                 # TSV
+obj = json.load(f);  obj = json.loads(s)      # file / str -> dict,list
+json.dump(obj, f, indent=4, ensure_ascii=False)  # 中文不轉義
+s = json.dumps(obj, indent=2)                 # -> str
+# 更新 JSON: load -> 改 -> 用 "w" dump 回去; True->true None->null
+\end{lstlisting}
+
+\sec{20. 例外處理}
+\begin{bl}
+\item C 靠回傳碼/errno 每次檢查; Python \sub{raise} 後沿呼叫堆疊往上找最近的 \py|except|, 未處理 \ra{} traceback 終止程式。
+\end{bl}
+\begin{lstlisting}
+BaseException
+ +- SystemExit (sys.exit), KeyboardInterrupt (Ctrl-C)
+ +- Exception
+     +- ArithmeticError -> ZeroDivisionError
+     +- LookupError -> IndexError, KeyError
+     +- OSError -> FileNotFoundError, PermissionError
+     +- ValueError, TypeError, AttributeError, EOFError
+     +- ImportError -> ModuleNotFoundError
+\end{lstlisting}
+\begin{bl}
+\item 觸發: \py|10/0| ZeroDivisionError; \py|int("abc")| ValueError; \py|"5"+5| TypeError; \py|open("no")| FileNotFoundError; \py|[1,2,3][10]| IndexError; \py|{}["c"]| KeyError; \py|"s".append()| AttributeError; \py|import nope| ModuleNotFoundError; 到 EOF 再 \py|input()| EOFError。
+\end{bl}
+\begin{lstlisting}
+try:
+    risky()
+except (ValueError, ZeroDivisionError) as e:  # tuple 多型別
+    print(type(e).__name__, e)
+except Exception as e: ...                    # 較廣的放後面
+else:      ...   # 沒發生例外才執行 (成功路徑)
+finally:   ...   # 一定執行 (清理); try 內有 return 也會先跑
+\end{lstlisting}
+\begin{bl}
+\item except \sub{由上而下, 第一個符合者勝出}: 父類別放前面會遮蔽子類 (\py|except Exception| 在前 \ra{} \py|except ValueError| 永不執行; \py|except LookupError| 在前 \ra{} KeyError 區塊不執行)。
+\item \warn{bare \texttt{except:}} 等於 \py|except BaseException|, 連 Ctrl-C / SystemExit / bug 都吞 \ra{} 永遠指定型別; 至少用 \py|except Exception|。
+\item \py|def f(): try: return 1 finally: print("cleanup")| \ra{} \py|print(f())| 先印 cleanup 再印 1。
+\item \sub{EAFP} (先做, 失敗才處理; Pythonic; 無 check-use 之間的 race) vs \sub{LBYL} (先檢查 \py|os.path.exists| 再 open, 之後檔案可能消失)。
+\item \py|raise ValueError("msg")|; \sub{裸 \texttt{raise}} 重拋同一例外 (記 log 後往上傳); \py|raise ConfigError("x") from e| 例外鏈 (traceback 同時保留兩個, 顯示 direct cause)。
+\item 自訂: \py|class MyErr(Exception): pass|; 加屬性 \py|__init__(self,msg,field)| + \py|super().__init__(msg)|; 階層 \py|DBError| $\to$ \py|QueryError| \py|DataNotFoundError| \ra{} \py|except DBError| 捕捉所有子類 (特定子類 except 放前面)。
+\item \py|assert cond, "msg"| 失敗丟 AssertionError; 用於\sub{內部檢查/前後條件/除錯}; \warn{不可用來驗證使用者輸入或檔案是否存在} (\py|python -O| 會移除 assert) \ra{} 用 if/raise 或 try-except。
+\end{bl}
+
+\sec{21. 物件導向 (Lec7)}
+\begin{bl}
+\item 四大支柱: \sub{封裝} Encapsulation, \sub{抽象} Abstraction, \sub{繼承} Inheritance, \sub{多型} Polymorphism。class = 藍圖; object = 實例; \py|__init__| 為建構子 (建立後自動呼叫, 初始化屬性, 可驗證並 raise)。
+\end{bl}
+\begin{lstlisting}
+class Dog:
+    species = "Canis"           # class var: 全體共用
+    def __init__(self, name):   # self = 呼叫此方法的物件
+        self.name = name        # instance var
+    def bark(self): return f"{self.name}: Woof"
+d = Dog("Rex");  d.bark()       # 等同 Dog.bark(d)
+\end{lstlisting}
+\begin{bl}
+\item \sub{self} 是物件本身, 由 Python 自動當第一個引數傳入, \sub{必須明寫} (C++ 隱含 \py|this|); 方法漏寫 self \ra{} \py|C().greet()| \warn{TypeError} (多傳一個引數)。
+\item class var 全體共用 (\py|Person.population += 1|); \warn{mutable class var (如 list) 所有物件共用} \ra{} 在 \py|__init__| 建 \py|self.tricks=[]|。\py|a.items=[1]| 只在 a 上建\sub{實例屬性}(遮蔽 class var), \py|b.items| 仍是共用那個; \py|Counter.count| 以類別名改; \py|self.count+=1| 會建實例屬性。
+\item \py|__del__| 解構子 (物件即將被銷毀; 幾乎用不到, 清理請用 \py|with|)。
+\item \py|__str__| 給使用者 (\py|print| \py|str()|); \py|__repr__| 給開發者 (REPL/除錯, 要明確); 沒有 \py|__str__| 時退回 \py|__repr__|; 都沒有則印記憶體位址。
+\item \py|@dataclass| (欄位需型別註記 \py|x: int|) 自動產生 \py|__init__ __repr__ __eq__|; 沒定義 \py|__eq__| 時 \py|==| 比\sub{身分}: \py|P(1)==P(1)| 為 False。dunder: \py|__eq__ __add__ __len__ __lt__|; 型別不符回 \py|NotImplemented|; 自訂 \py|__eq__| 又沒寫 \py|__hash__| \ra{} 不可 hash。
+\end{bl}
+\begin{tabular}{@{}l|l|l|l@{}}
+方法 & 第一參數 & 存取 & 用途\\\hline
+instance & \py|self| & 實例+類別 & 一般操作\\
+\py|@classmethod| & \py|cls| & 類別 & 替代建構子 \py|cls(...)|\\
+\py|@staticmethod| & 無 & 皆不能 & 工具函式 (可不建物件呼叫)\\
+\end{tabular}
+\begin{bl}
+\item \sub{繼承}: \py|class Dog(Animal):|, \py|super().__init__(name,age)|, override 同名方法, 新增方法; \py|isinstance(duck, Animal)|。\sub{多重繼承} \py|class Duck(Flyable,Swimmable,Animal)|。
+\item \sub{MRO} (方法解析順序, C3): \py|D.__mro__| \ra{} \py|[D,B,C,A,object]|; \py|super()| \sub{沿 MRO} 走而非只找直接父類; 菱形繼承每個類別只執行一次: \py|D().who()| 印 \py|B C A|。
+\item \sub{多型}: override (同介面不同實作 \py|for s in shapes: s.area()|) + \sub{duck typing} (只看有沒有該方法, 不檢查型別或繼承)。
+\item \sub{ABC}: \py|class Shape(ABC):| + \py|@abstractmethod def area(self)|; 子類沒實作就\warn{不能實例化} (TypeError); 強制共同介面。
+\item \sub{封裝}: 沒有真正 private; \py|_x| 慣例內部; \py|__x| name mangling 成 \py|_Class__x| (仍可存取)。\py|@property| 取代冗長 getter/setter:
+\end{bl}
+\begin{lstlisting}
+class Person:
+    def __init__(self, age): self.age = age   # 走 setter 驗證
+    @property
+    def age(self): return self._age
+    @age.setter
+    def age(self, v):
+        if not isinstance(v,int): raise TypeError
+        if v < 0: raise ValueError("Invalid age")
+        self._age = v
+    @property
+    def is_adult(self): return self._age >= 18  # 唯讀/計算屬性
+# p.is_adult = False -> AttributeError (無 setter)
+\end{lstlisting}
+\begin{bl}
+\item \sub{Python vs C++}: 無編譯期 private (慣例); 無方法 overloading (用預設值/\py|*args|); 無 templates (duck typing); 預設皆 public 且動態。
+\end{bl}
+
+%==================================================
+\sec{22. 2025 期中考古題: 觀念與填空}
+\begin{bl}
+\item \sub{選擇題 1--12}: \textbf{1B} venv 隔離套件相依; \textbf{2C} (混用 tab/space 是錯的); \textbf{3C} 次數不定、條件成立才停; \textbf{4C} (list comp 不能完全取代 for); \textbf{5B} tuple 不可變; \textbf{6B} f-string 比 \% / format 快; \textbf{7C} pass by object reference; \textbf{8C} (decorator 可疊多個); \textbf{9B} lambda 給 map/filter 當簡單引數; \textbf{10B} with 自動關檔, 例外也釋放; \textbf{11B} classmethod 需 cls, staticmethod 不需; \textbf{12C} duck typing 多型。
+\item \sub{Candy} (山峰/山谷一次掃描, 全部先給 1): 上坡累加 1,2,..peak; 下坡累加 1,2,..valley; 山頂重複算要扣 \py|min(peak,valley)|。\sub{(1)} \py|ratings[i] > ratings[i-1]| \sub{(2)} \py|i == n| \sub{(3)} \py|+=| \sub{(4)} \py|min|。
+\item \sub{Jump Game} (貪心 maxreach): \sub{(5)} \py|n - 1| \sub{(6)} \py|i > maxreach| (走不到 i) \sub{(7)} \py|maxreach|。
+\item \sub{Sort List} (merge sort; 快慢指標找中點, \py|slow.next=None| 斷開): \sub{(8)} \py|self.sortList(head)| \sub{(9)} \py|self.sortList(mid)| \sub{(10)} \py|self.merge(left, right)|。
+\end{bl}
+\begin{lstlisting}
+# Candy 另解: 兩次掃描
+c = [1]*n
+for i in range(1, n):
+    if r[i] > r[i-1]: c[i] = c[i-1] + 1
+for i in range(n-2, -1, -1):
+    if r[i] > r[i+1]: c[i] = max(c[i], c[i+1] + 1)
+ans = sum(c)
+\end{lstlisting}
+
+\sec{23. 考古題程式題模板}
+\begin{lstlisting}
+# C1 最短輸入時間: 打字 0.3s/字, 貼上 C 0.4s (整數 0.1s 避免浮點誤差)
+T = input(); C = input(); n, m = len(T), len(C)   # 不要 strip
+dp = [0] + [10**9]*n
+for i in range(1, n+1):
+    dp[i] = dp[i-1] + 3
+    if i >= m and T[i-m:i] == C: dp[i] = min(dp[i], dp[i-m] + 4)
+print(f"{dp[n]/10:.1f}")                          # 範例 24.0
+# C2 螺旋矩陣: 右->上->左->下, 步長 1,1,2,2,3,3,...
+n = int(input()); g = [[0]*n for _ in range(n)]
+r = n//2; c = n//2 if n%2 else n//2-1             # 偶數: 中央四格左下
+v = 1; g[r][c] = 1
+D = [(0,1),(-1,0),(0,-1),(1,0)]; d = 0; step = 1
+while v < n*n:
+    for _ in range(2):
+        for _ in range(step):
+            if v == n*n: break
+            r += D[d][0]; c += D[d][1]; v += 1; g[r][c] = v
+        d = (d+1) % 4
+    step += 1
+w = len(str(n*n))                                  # 右對齊, 行尾無空白
+for row in g: print(" ".join(str(x).rjust(w) for x in row))
+# C3 鬼屋路徑數: 四方向 -> 簡單路徑 DFS + 回溯 (只能右/下則改 DP)
+n = int(input()); g = [list(map(int,input().split())) for _ in range(n)]
+vis = [[0]*n for _ in range(n)]
+def dfs(r, c):
+    if (r, c) == (n-1, n-1): return 1
+    vis[r][c] = 1; t = 0
+    for dr, dc in ((1,0),(-1,0),(0,1),(0,-1)):
+        a, b = r+dr, c+dc
+        if 0<=a<n and 0<=b<n and not g[a][b] and not vis[a][b]:
+            t += dfs(a, b)
+    vis[r][c] = 0                                  # 回溯
+    return t
+print(0 if g[0][0] or g[-1][-1] else dfs(0, 0))   # 範例 2
+\end{lstlisting}
+
+\sec{24. 快速陷阱表 (Guess the output)}
+\begin{tabular}{@{}p{0.62\linewidth}p{0.36\linewidth}@{}}
+\py|a=[1,2,3]; b=a; b.append(4); a| & \py|[1,2,3,4]|\\
+\py|add(1); add(2)| 預設 \py|acc=[]| & \py|[1]| \py|[1,2]|\\
+\py|{1:"a",1.0:"b",True:"c"}| & \py|{1: 'c'}|\\
+\py|d=dict.fromkeys("ab",[]); d["a"].append(1)| & \py|{'a':[1],'b':[1]}|\\
+\py|[f() for f in [lambda: i for i in range(3)]]| & \py|[2,2,2]|\\
+\py|g=(x for x in range(3)); list(g); list(g)| & \py|[0,1,2]| \py|[]|\\
+\py|"https://shop.example.com/".strip("https://")| & \py|'op.example.com'|\\
+\py|try: {}['k']| \py|except LookupError: A| \py|except KeyError: B| & 印 \py|A|\\
+\py|def f(): try: return 1 finally: print("cleanup")| & \py|cleanup| 再 \py|1|\\
+\py|class P: ...; P(1)==P(1)| (無 \py|__eq__|) & \py|False|\\
+\py|class C: def greet(): ...; C().greet()| & \py|TypeError|\\
+三個 \py|Counter()| 物件, \py|Counter.count| & \py|3|, \py|a.count b.count| 皆 3\\
+\py|a.items=[1]| 後 \py|b.items| (class var \py|[]|) & \py|[]| (共用 list)\\
+\py|D(B,C)| 菱形 \py|who()| 各 print 並 \py|super()| & \py|B C A|\\
+\py|-7//2|, \py|-7%2|; \py|f"{2.5:.0f}"|, \py|f"{3.5:.0f}"| & \py|-4|, \py|1|; \py|2|, \py|4|\\
+\py|type({})|, \py|type(())|, \py|type((1,))| & dict, tuple, tuple\\
+\py|bool("")|, \py|bool("False")|, \py|bool([0])| & F, T, T\\
+\py|with open("t","w") as fh: ...; fh.closed| & \py|True|\\
+\py|"a b c".split()| vs \py|'a  b'.split(" ")| & 無空字串 vs 有 \py|''|\\
+\py|int("3.14")|, \py|int(" 7 ")|, \py|int("３")| & ValueError, 7, 3\\
+\py|sys.getsizeof((x*x for x in range(10**6)))<1000| & \py|True|\\
+\end{tabular}
+
+\end{multicols*}
+\end{document}
